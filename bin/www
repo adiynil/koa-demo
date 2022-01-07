@@ -1,0 +1,9 @@
+/*
+ * @Author: adiynil
+ * @Date: 2022-01-04 15:40:10
+ * @LastEditors: adiynil
+ * @LastEditTime: 2022-01-04 15:43:44
+ * @Description: 
+ */
+const app = require('../app.js')
+app.listen(3000)

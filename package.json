@@ -1,0 +1,22 @@
+{
+  "name": "koa_demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node bin/www"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "http-errors": "^2.0.0",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^10.1.1",
+    "mongoose": "^6.1.4"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0"
+  }
+}
