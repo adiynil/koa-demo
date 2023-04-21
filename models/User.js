@@ -1,3 +1,10 @@
+/*
+ * @Author: adiynil
+ * @Date: 2022-01-07 16:04:29
+ * @LastEditors: adiynil
+ * @LastEditTime: 2022-03-03 13:48:09
+ * @Description:
+ */
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
@@ -24,4 +31,15 @@ const UserSchema = new Schema({
   last_login: { type: Date, default: Date.now }
 })
 
-module.exports = User = mongoose.model('user', UserSchema)
+const User = mongoose.model('user', UserSchema)
+
+User.getOne = (...args) => {
+  return User.findOne(
+    args[0],
+    { ...args[1], password: 0, __v: 0, _id: 0 },
+    args[2],
+    args[3]
+  )
+}
+
+module.exports = User

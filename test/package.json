@@ -3,21 +3,20 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon bin/www"
+    "dev": "node bin/www"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "dotenv": "^10.0.0",
-    "got": "^11.0.1",
     "http-errors": "^2.0.0",
     "koa": "^2.13.4",
-    "koa-body": "^5.0.0",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.1.1",
-    "minio": "^7.0.28",
     "mongoose": "^6.1.4"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0"
   }
 }

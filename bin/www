@@ -2,8 +2,21 @@
  * @Author: adiynil
  * @Date: 2022-01-04 15:40:10
  * @LastEditors: adiynil
- * @LastEditTime: 2022-01-04 15:43:44
- * @Description: 
+ * @LastEditTime: 2022-03-03 13:47:18
+ * @Description:
  */
 const app = require('../app.js')
-app.listen(3000)
+const port = 8899
+
+const doListen = p => {
+  app
+    .listen(p, () => {
+      console.log('server running on port ' + p)
+    })
+    .on('error', () => {
+      console.log('port ' + p + ' is in use, trying ' + ++p)
+      doListen(p)
+    })
+}
+
+doListen(port)

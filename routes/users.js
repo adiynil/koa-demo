@@ -2,7 +2,7 @@
  * @Author: adiynil
  * @Date: 2022-01-04 16:42:25
  * @LastEditors: adiynil
- * @LastEditTime: 2022-01-06 10:42:55
+ * @LastEditTime: 2022-01-11 22:57:26
  * @Description:
  */
 const Router = require('koa-router')
@@ -15,25 +15,26 @@ router
   .get('/:account', async (ctx, next) => {
     const { request: req, response: res } = ctx
     const { account } = ctx.params
-    let user = await UserM.findOne({ account }, { password: 0, __v: 0, _id: 0 })
-    if (!user) {
-      res.status = 404
-      res.body = {
-        message: 'Not Found'
-      }
-      return
+    let user = await UserM.getOne({ account })
+    if (user) {
+      return (res.body = user)
     }
-    res.body = user
+    res.status = 404
+    res.body = {
+      message: 'account does not exist'
+    }
   })
   .post('/:account', async (ctx, next) => {
     const { request: req, response: res } = ctx
     const { account } = ctx.params
-    let isExit = UserM.findOne({ account })
-    isExit && (res.message = 'account exit')
+    let isExist = await UserM.getOne({ account })
+    if (isExist) {
+      return (res.body = { message: 'account already exists' })
+    }
     console.log(req.body)
-    // await UserM.insertMany({ account, ...req.body })
-    // let user = await UserM.findOne({ account })
-    // res.body = user || {}
+    await UserM.insertMany({ ...req.body, account })
+    let user = await UserM.getOne({ account })
+    res.body = user
   })
 
 module.exports = app => {
